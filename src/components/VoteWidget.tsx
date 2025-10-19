@@ -76,9 +76,10 @@ export default function VoteWidget() {
       } else {
         showToast('Something went wrong.')
       }
-    } catch (e: any) {
-      showToast(`Error: ${e?.message ?? 'Network error'}`)
-    }
+        } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : 'Network error'
+      showToast(`Error: ${message}`)
+        }
   }
 
   const leader = stats.leader ?? 'neutral'

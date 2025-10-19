@@ -75,10 +75,12 @@ export async function GET() {
       todayCounts: { good, neutral, bad },
       leader,
     })
-  } catch (e: any) {
+    } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e)
     return NextResponse.json(
-      { error: e?.message ?? 'Unexpected server error' },
+      { error: message ?? 'Unexpected server error' },
       { status: 500 }
     )
   }
+
 }
