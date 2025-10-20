@@ -28,7 +28,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="border-t bg-white mt-16">
+    <footer className="bg-white border-t">
       <div className="mx-auto max-w-3xl px-4 py-6 text-center text-gray-600">
         <p className="text-sm mb-3">
           <span className="font-semibold">Lifetime Votes:</span>{' '}

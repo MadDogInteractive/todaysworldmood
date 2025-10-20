@@ -16,7 +16,6 @@ const MOOD_EMOJI: Record<'good' | 'neutral' | 'bad', string> = {
   bad: '🙁',
 }
 
-// Key for localStorage, per-day
 const votedKey = (isoDate: string) => `twm_voted_${isoDate}`
 
 export default function VoteWidget() {
@@ -44,7 +43,6 @@ export default function VoteWidget() {
           todayCounts: data.todayCounts ?? { good: 0, neutral: 0, bad: 0 },
           leader: (data.leader as Stats['leader']) ?? 'neutral',
         })
-        // If we have a date from the server, use it to check local vote state
         if (typeof window !== 'undefined' && data?.date) {
           setVotedToday(!!localStorage.getItem(votedKey(data.date)))
         }
@@ -85,7 +83,6 @@ export default function VoteWidget() {
         markVotedForToday()
         await refreshStats()
       } else if (data?.message) {
-        // This includes “You already voted today.”
         showToast(data.message)
         markVotedForToday()
       } else if (data?.error) {
@@ -93,7 +90,7 @@ export default function VoteWidget() {
       } else {
         showToast('Something went wrong.')
       }
-    } catch (e) {
+    } catch {
       showToast('Network error')
     }
   }
@@ -102,55 +99,57 @@ export default function VoteWidget() {
   const leaderEmoji = MOOD_EMOJI[leader]
 
   return (
-    <div className="space-y-8">
-      {/* Either buttons or the “come back tomorrow” message */}
+    <div className="space-y-10">
+      {/* Buttons or “come back tomorrow” */}
       {!votedToday ? (
         <div className="flex flex-wrap items-center justify-center gap-4">
           <button
-            className="rounded-xl px-5 py-3 border hover:bg-white-50 active:scale-[0.98] transition"
+            className="rounded-2xl px-5 py-3 text-white bg-gradient-to-r from-fuchsia-500 to-indigo-500 shadow-lg shadow-fuchsia-500/20 hover:brightness-110 active:scale-[0.98] transition"
             onClick={() => sendVote('good')}
           >
-            <span className="mr-1 text-white">🙂</span> I feel Good
+            <span className="mr-1">🙂</span> I feel Good
           </button>
           <button
-            className="rounded-xl px-5 py-3 border hover:bg-white-50 active:scale-[0.98] transition"
+            className="rounded-2xl px-5 py-3 text-white bg-gradient-to-r from-amber-500 to-pink-500 shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-[0.98] transition"
             onClick={() => sendVote('neutral')}
           >
-            <span className="mr-1 text-white">😐</span> I feel Neutral
+            <span className="mr-1">😐</span> I feel Neutral
           </button>
           <button
-            className="rounded-xl px-5 py-3 border hover:bg-white-50 active:scale-[0.98] transition"
+            className="rounded-2xl px-5 py-3 text-white bg-gradient-to-r from-sky-500 to-violet-500 shadow-lg shadow-sky-500/20 hover:brightness-110 active:scale-[0.98] transition"
             onClick={() => sendVote('bad')}
           >
-            <span className="mr-1 text-white">🙁</span> I feel Bad
+            <span className="mr-1">🙁</span> I feel Bad
           </button>
         </div>
       ) : (
-        <p className="text-center text-sm text-white-600">
-          <b>Check Back Tomorrow to Vote Again</b>
+        <p className="text-center text-sm text-gray-700">
+          Check Back Tomorrow to Vote Again
         </p>
       )}
 
-      {/* Big emoji vibe */}
+      {/* Big emoji vibe with soft glow */}
       {!loading && (
         <div className="text-center">
-          <div className="text-7xl md:text-8xl leading-none">{leaderEmoji}</div>
-          <div className="mt-2 text-sm text-white-600">
+          <div className="text-7xl md:text-8xl leading-none drop-shadow-[0_10px_24px_rgba(99,102,241,0.35)]">
+            {leaderEmoji}
+          </div>
+          <div className="mt-2 text-sm text-gray-700">
             Today’s leading mood:{' '}
-            <span className="font-medium capitalize">{leader}</span>
+            <span className="font-semibold capitalize">{leader}</span>
           </div>
         </div>
       )}
 
       {/* Today total only, auto-sizing box */}
       <div className="text-center">
-        <h2 className="font-semibold mb-2">
+        <h2 className="font-semibold text-black mb-2">
           {loading ? 'Loading today’s total…' : 'Today’s Total Votes'}
         </h2>
         {!loading && (
           <div className="flex justify-center">
-            <div className="inline-block rounded-2xl border px-8 py-6 shadow-sm">
-              <div className="text-5xl md:text-6xl font-extrabold tabular-nums">
+            <div className="inline-block rounded-2xl border border-white/60 bg-white/70 backdrop-blur px-8 py-6 shadow-md">
+              <div className="font-extrabold tabular-nums text-black text-[clamp(2.5rem,8vw,4rem)]">
                 {stats.todayTotal.toLocaleString()}
               </div>
             </div>
