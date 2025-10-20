@@ -123,7 +123,7 @@ export default function VoteWidget() {
           </button>
         </div>
       ) : (
-        <p className="text-center text-sm text-gray-700">
+        <p className="text-center text-sm text-black-700">
           Check Back Tomorrow to Vote Again
         </p>
       )}
@@ -134,7 +134,7 @@ export default function VoteWidget() {
           <div className="text-7xl md:text-8xl leading-none drop-shadow-[0_10px_24px_rgba(99,102,241,0.35)]">
             {leaderEmoji}
           </div>
-          <div className="mt-2 text-sm text-gray-700">
+          <div className="mt-2 text-sm text-black-700">
             Today’s leading mood:{' '}
             <span className="font-semibold capitalize">{leader}</span>
           </div>
@@ -148,7 +148,7 @@ export default function VoteWidget() {
         </h2>
         {!loading && (
           <div className="flex justify-center">
-            <div className="inline-block rounded-2xl border border-white/60 bg-white/70 backdrop-blur px-8 py-6 shadow-md">
+            <div className="inline-block rounded-2xl border border-black/100 bg-white/70 backdrop-blur px-8 py-6 shadow-md">
               <div className="font-extrabold tabular-nums text-black text-[clamp(2.5rem,8vw,4rem)]">
                 {stats.todayTotal.toLocaleString()}
               </div>
