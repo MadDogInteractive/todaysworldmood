@@ -135,27 +135,13 @@ export default function VoteWidget() {
             {leaderEmoji}
           </div>
           <div className="mt-2 text-sm text-black-700">
-            Today’s leading mood:{' '}
+            Today’s mood:{' '}
             <span className="font-semibold capitalize">{leader}</span>
           </div>
         </div>
       )}
 
-      {/* Today total only, auto-sizing box */}
-      <div className="text-center">
-        <h2 className="font-semibold text-black mb-2">
-          {loading ? 'Loading today’s total…' : 'Today’s Total Votes'}
-        </h2>
-        {!loading && (
-          <div className="flex justify-center">
-            <div className="inline-block rounded-2xl border border-black/100 bg-white/70 backdrop-blur px-8 py-6 shadow-md">
-              <div className="font-extrabold tabular-nums text-black text-[clamp(2.5rem,8vw,4rem)]">
-                {stats.todayTotal.toLocaleString()}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+
 
       {/* Toast */}
       {toast && (

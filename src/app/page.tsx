@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import VoteWidget from '@/components/VoteWidget'
+import ShareButton from '@/components/ShareButton'
+
 
 export default function Page() {
   const [lifetime, setLifetime] = useState<number | null>(null)
@@ -51,6 +53,9 @@ export default function Page() {
                   connection.
                   <br></br>
                   Share a moment of human feeling.
+                  <br></br>
+                  <br></br>
+                  <ShareButton />
                 </p>
               </div>
 
