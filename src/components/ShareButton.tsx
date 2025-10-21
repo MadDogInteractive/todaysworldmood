@@ -13,8 +13,7 @@ export default function ShareButton() {
     // Web Share API (mobile & some desktop)
     if (navigator.share) {
       try {
-        await navigator.share({title,text,})
-        await navigator.share({url,})
+        await navigator.share({title,text,url})
         return
       } catch {
         /* fall through to copy */
