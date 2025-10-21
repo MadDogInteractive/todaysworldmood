@@ -19,7 +19,7 @@ export default function ShareButton() {
 
       if (navigator.share) {
         // Optional: check payload support on some browsers
-        if (navigator.canShare ? navigator.canShare({ title, text, url }) : true) {
+        if (navigator.canShare()) {
           await navigator.share({ title, text, url })
           return
         }
