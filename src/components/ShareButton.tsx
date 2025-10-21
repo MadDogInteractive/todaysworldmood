@@ -26,7 +26,7 @@ export default function ShareButton() {
       }
 
       // Fallback: copy
-      await navigator.clipboard.writeText(url)
+      //await navigator.clipboard.writeText(url)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {

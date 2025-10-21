@@ -10,7 +10,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: "Today's World Mood",
   description: 'Tracking the pulse of global emotion in real-time.',
-  metadataBase: new URL('https://todaysworldmood.com'), 
+  //metadataBase: new URL('https://todaysworldmood.com'), 
   openGraph: {
     title: "Today’s World Mood",
     description: 'Tracking the pulse of global emotion in real-time.',
