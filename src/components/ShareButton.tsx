@@ -24,37 +24,40 @@ export default function ShareButton() {
           return
         }
       }
-
-      // Fallback: copy
-      //await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
     } catch {
-      // Fallback fallback: legacy copy trick
-      try {
-        const url =
-          typeof window !== 'undefined'
-            ? window.location.origin
-            : 'https://todaysworldmood.com'
-        const ta = document.createElement('textarea')
-        ta.value = url
-        document.body.appendChild(ta)
-        ta.select()
-        document.execCommand('copy')
-        document.body.removeChild(ta)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
-      } catch {
-        // give up silently
-      }
-    } finally {
-      // small delay so double taps don't re-fire immediately
-      setTimeout(() => {
-        sharingRef.current = false
-        setBusy(false)
-      }, 400)
+        //Give up
     }
-  }
+}   
+    //   // Fallback: copy
+    //   //await navigator.clipboard.writeText(url)
+    //   setCopied(true)
+    //   setTimeout(() => setCopied(false), 1500)
+    // } catch {
+    //   // Fallback fallback: legacy copy trick
+    //   try {
+    //     const url =
+    //       typeof window !== 'undefined'
+    //         ? window.location.origin
+    //         : 'https://todaysworldmood.com'
+    //     const ta = document.createElement('textarea')
+    //     ta.value = url
+    //     document.body.appendChild(ta)
+    //     ta.select()
+    //     document.execCommand('copy')
+    //     document.body.removeChild(ta)
+    //     setCopied(true)
+    //     setTimeout(() => setCopied(false), 1500)
+    //   } catch {
+    //      // give up silently
+    //   }
+    // } finally {
+//       // small delay so double taps don't re-fire immediately
+//       setTimeout(() => {
+//         sharingRef.current = false
+//         setBusy(false)
+//       }, 400)
+//     }
+//   }
 
   return (
     <div className="flex items-center justify-center">
