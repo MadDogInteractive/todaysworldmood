@@ -11,15 +11,29 @@ export default function ShareButton() {
     const text = "How’s the world feeling today? Cast your vote."
 
     // Web Share API (mobile & some desktop)
+    // if (navigator.share) {
+    //   try {
+    //     await navigator.share({url})
+    //     return
+    //   } catch {
+    //     /* fall through to copy */
+    //   }
+    // }
+
+
     if (navigator.share) {
-      try {
-        await navigator.share({url})
-        return
-      } catch {
-        /* fall through to copy */
-      }
+        navigator.share({
+            title,
+            text,
+            url,
+        })
+        .then(() => console.log('Content shared successfully'))
+        .catch((error) => console.error('Error sharing:', error));
+    } else {
+        console.log('Web Sharing is not supported in this browser')
     }
 
+    
     // Fallback: copy to clipboard
     try {
       await navigator.clipboard.writeText(url)
