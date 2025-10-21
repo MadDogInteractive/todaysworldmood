@@ -13,10 +13,7 @@ export default function ShareButton() {
     setBusy(true)
 
     try {
-      const url =
-        typeof window !== 'undefined'
-          ? window.location.origin
-          : 'https://todaysworldmood.com'
+      const url = 'https://todaysworldmood.com'
       const title = "Today’s World Mood"
       const text = "How’s the world feeling today? Cast your vote."
 
